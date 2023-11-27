@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numpy.polynomial.polynomial import Polynomial
 
-# Data
+# Data (original dataset without adding a point)
 x = np.array([72, 68, 69, 68, 64, 72, 72, 66, 68, 70])
 y = np.array([200, 165, 160, 135, 120, 162, 190, 139, 155, 155])
 
@@ -18,7 +18,8 @@ degree = min(len(x) - 1, 9)
 p10 = np.poly1d(np.polyfit(x, y, degree))
 
 # Generate a range of x values for plotting the functions
-x_range = np.linspace(x.min(), x.max(), 100)
+# Extending the x range to include 73
+x_range = np.linspace(x.min(), 73, 100)
 
 # Plot
 plt.figure(figsize=(10, 6))
@@ -31,9 +32,9 @@ plt.axhline(y=constant, color='red', linestyle='--', label=f'Best constant funct
 plt.plot(x_range, p1(x_range), color='green', label=f'Best linear function')
 
 # Plot the best 10 degree polynomial function
-plt.plot(x_range, p10(x_range), color='orange', label='Best polynomial function (10 degree if possible)')
+plt.plot(x_range, p10(x_range), color='orange', label='Best polynomial function (degree 9)')
 
-plt.title('Scatter plot with best fitting functions')
+plt.title('Scatter plot with best fitting functions extended to x=73')
 plt.xlabel('Height (x)')
 plt.ylabel('Weight (y)')
 plt.legend()
